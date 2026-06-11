@@ -27,7 +27,6 @@ This project is designed for MVP-stage local/offline AI systems where **Computer
 - [CLI Arguments](#cli-arguments)
 - [How Metrics Are Calculated](#how-metrics-are-calculated)
 - [Important Technical Notes](#important-technical-notes)
-- [Troubleshooting](#troubleshooting)
 - [Final Notes](#final-notes)
 
 ---
@@ -215,7 +214,7 @@ local-gpu-sla-profiler/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/local-gpu-sla-profiler.git
+git clone https://github.com/sajad-bana-zadeh/local-gpu-sla-profiler.git
 cd local-gpu-sla-profiler
 ```
 
@@ -231,8 +230,8 @@ source venv/bin/activate
 ### 3. Install dependencies
 
 ```bash
-pip install --upgrade pip
-pip install -r requirements.txt
+pip3 install --upgrade pip
+pip3 install -r requirements.txt
 ```
 
 Example `requirements.txt`:
@@ -529,87 +528,6 @@ It does not yet simulate full concurrent execution of:
 - LLM generation
 
 That can be added as a future extension.
-
----
-
-## Troubleshooting
-
-### LM Studio server is not reachable
-
-Check:
-
-```bash
-curl http://localhost:1234/api/v0/models
-```
-
-If it fails:
-
-- Start the server from the LM Studio Developer tab.
-- Make sure the model is loaded.
-- Check that the port is `1234`.
-- Confirm that no firewall is blocking localhost.
-
----
-
-### Model name error
-
-List available models:
-
-```bash
-curl http://localhost:1234/api/v0/models
-```
-
-Copy the exact model id and use it in:
-
-```bash
---model <model-id>
-```
-
----
-
-### CUDA is not available in PyTorch
-
-Run:
-
-```bash
-python - << 'EOF'
-import torch
-print(torch.cuda.is_available())
-print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else None)
-EOF
-```
-
-If CUDA is not available:
-
-- Check NVIDIA driver installation.
-- Check `nvidia-smi`.
-- Verify that PyTorch was installed with CUDA support.
-
----
-
-### FAISS installation issue
-
-If FAISS is not available, the script falls back to NumPy brute-force search.
-
-For better final benchmark reporting, install FAISS:
-
-```bash
-pip install faiss-cpu
-```
-
----
-
-### VRAM is already high before benchmark
-
-This usually means the model is already loaded by LM Studio or another process.
-
-Check:
-
-```bash
-nvidia-smi
-```
-
-If needed, close LM Studio or unload the model, then measure a clean baseline.
 
 ---
 
