@@ -1,7 +1,7 @@
 # Local GPU SLA Profiler
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![GPU](https://img.shields.io/badge/GPU-RTX%203090%20%2F%204090-green.svg)]()
+[![GPU](https://img.shields.io/badge/GPU-RTX%203090-green.svg)]()
 [![Backend](https://img.shields.io/badge/LLM-LM%20Studio%20%7C%20Ollama%20%7C%20OpenAI--Compatible-purple.svg)]()
 [![Status](https://img.shields.io/badge/SLA-PASS-brightgreen.svg)]()
 
