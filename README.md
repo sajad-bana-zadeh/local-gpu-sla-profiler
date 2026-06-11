@@ -28,7 +28,7 @@ This project is designed for MVP-stage local/offline AI systems where **Computer
 - [How Metrics Are Calculated](#how-metrics-are-calculated)
 - [Important Technical Notes](#important-technical-notes)
 - [Troubleshooting](#troubleshooting)
-- [Future Improvements](#future-improvements)
+- [Final Notes](#final-notes)
 
 ---
 
@@ -610,23 +610,6 @@ nvidia-smi
 ```
 
 If needed, close LM Studio or unload the model, then measure a clean baseline.
-
----
-
-## Future Improvements
-
-Planned extensions:
-
-- Concurrent YOLO + RAG + LLM benchmark mode
-- Long-running VRAM leak detection
-- Queue latency measurement
-- Separate embedding benchmark
-- Reranker benchmark
-- FAISS GPU benchmark
-- Qdrant / pgvector benchmark mode
-- CSV export
-- HTML report generation
-- 1-hour / 6-hour / 24-hour stability test
 
 ---
 
