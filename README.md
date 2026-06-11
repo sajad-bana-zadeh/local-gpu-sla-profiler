@@ -189,9 +189,12 @@ local-gpu-sla-profiler/
 ├── local_gpu_sla_profiler.py
 ├── requirements.txt
 ├── README.md
-├── sla_log_lmstudio_256.txt
-├── sla_report_lmstudio_256.json
-└── SLA_EXECUTION_REPORT_256.md
+├── .gitignore
+├── LICENSE
+└── examples/
+    ├── sla_log_lmstudio_256.txt
+    ├── sla_report_lmstudio_256.json
+    └── SLA_EXECUTION_REPORT_256.md
 ```
 
 ### File Descriptions
