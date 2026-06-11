@@ -187,10 +187,9 @@ Final benchmark command used `max_tokens=256`.
 local-gpu-sla-profiler/
 ├── local_gpu_sla_profiler.py
 ├── requirements.txt
-├── README.md
-├── .gitignore
-├── LICENSE
 └── examples/
+    ├── gpu_after_profiler.csv
+    ├── gpu_before_model_load.csv
     ├── sla_log_lmstudio_256.txt
     ├── sla_report_lmstudio_256.json
     └── SLA_EXECUTION_REPORT_256.md
@@ -202,7 +201,8 @@ local-gpu-sla-profiler/
 |---|---|
 | `local_gpu_sla_profiler.py` | Main benchmark script |
 | `requirements.txt` | Python dependencies |
-| `README.md` | Project documentation |
+| `gpu_before_model_load.csv` | Shows before profiler GPU status |
+| `gpu_after_profiler.csv` | Shows after profiler GPU status |
 | `sla_log_lmstudio_256.txt` | Terminal output from the benchmark run |
 | `sla_report_lmstudio_256.json` | Structured JSON benchmark report |
 | `SLA_EXECUTION_REPORT_256.md` | Clean final execution report |
