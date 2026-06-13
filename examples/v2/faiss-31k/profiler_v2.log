@@ -1,0 +1,170 @@
+2026-06-13 23:26:36,792 | INFO | local_gpu_sla_profiler | Local GPU SLA Profiler started
+2026-06-13 23:26:36,792 | INFO | local_gpu_sla_profiler | Arguments: {'backend': 'lmstudio', 'model': 'qwen3-coder-30b-a3b-instruct', 'llm_url': 'http://localhost:1234/api/v0/chat/completions', 'prompt': 'You are benchmarking a local RAG system. Briefly explain how to reduce latency when YOLO vision inference, vector retrieval, and local LLM generation run on one RTX 3090.', 'max_tokens': 256, 'temperature': 0.2, 'timeout_s': 300, 'chunks': 31000, 'dim': 768, 'top_k': 100, 'query_runs': 50, 'warmup_runs': 5, 'seed': 42, 'numpy_batch_size': 8192, 'force_numpy': False, 'device_index': 0, 'vram_sample_interval_s': 0.05, 'strict_gpu_monitor': False, 'retrieval_sla_ms': 150.0, 'llm_sla_tps': 15.0, 'vram_sla_gib': 24.0, 'json_out': 'sla_report_lmstudio_v2.json', 'log_level': 'INFO', 'log_file': 'profiler_v2.log'}
+2026-06-13 23:26:36,817 | INFO | local_gpu_sla_profiler | NVML initialized successfully for device index 0
+2026-06-13 23:26:36,883 | INFO | local_gpu_sla_profiler | PyTorch CUDA peak memory stats reset
+2026-06-13 23:26:36,884 | INFO | local_gpu_sla_profiler | Starting vector benchmark: chunks=31000 dim=768 top_k=100 runs=50 warmup=5
+2026-06-13 23:26:37,123 | INFO | local_gpu_sla_profiler | Using FAISS IndexFlatIP backend
+2026-06-13 23:26:37,345 | INFO | local_gpu_sla_profiler | Vector benchmark completed: mean=3.98ms p95=4.32ms
+2026-06-13 23:26:37,346 | INFO | local_gpu_sla_profiler | VRAM sampler started with interval 0.050s
+2026-06-13 23:26:37,346 | INFO | local_gpu_sla_profiler | Starting LM Studio benchmark: model=qwen3-coder-30b-a3b-instruct url=http://localhost:1234/api/v0/chat/completions
+2026-06-13 23:26:37,359 | ERROR | local_gpu_sla_profiler | LM Studio HTTP request failed
+Traceback (most recent call last):
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/urllib3/connection.py", line 445, in request
+    self.endheaders()
+  File "/usr/lib/python3.11/http/client.py", line 1297, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.11/http/client.py", line 1057, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.11/http/client.py", line 995, in send
+    self.connect()
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/urllib3/connection.py", line 276, in connect
+    self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7efc65f05590>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/urllib3/util/retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=1234): Max retries exceeded with url: /api/v0/chat/completions (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7efc65f05590>: Failed to establish a new connection: [Errno 111] Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/rog/Documents/ai_code/sla_profiler/local_gpu_sla_profiler.py", line 437, in benchmark_lmstudio
+    resp = requests.post(url, json=payload, timeout=timeout_s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/requests/api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/requests/adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=1234): Max retries exceeded with url: /api/v0/chat/completions (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7efc65f05590>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-06-13 23:26:37,396 | INFO | local_gpu_sla_profiler | VRAM sampler stopped cleanly
+2026-06-13 23:26:37,396 | ERROR | local_gpu_sla_profiler | Profiler failed
+Traceback (most recent call last):
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/urllib3/connection.py", line 445, in request
+    self.endheaders()
+  File "/usr/lib/python3.11/http/client.py", line 1297, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.11/http/client.py", line 1057, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.11/http/client.py", line 995, in send
+    self.connect()
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/urllib3/connection.py", line 276, in connect
+    self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7efc65f05590>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/urllib3/util/retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=1234): Max retries exceeded with url: /api/v0/chat/completions (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7efc65f05590>: Failed to establish a new connection: [Errno 111] Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/rog/Documents/ai_code/sla_profiler/local_gpu_sla_profiler.py", line 932, in main
+    llm = benchmark_llm(args)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/sla_profiler/local_gpu_sla_profiler.py", line 731, in benchmark_llm
+    return benchmark_lmstudio(args.llm_url, args.model, args.prompt, args.max_tokens, args.temperature, args.timeout_s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/sla_profiler/local_gpu_sla_profiler.py", line 437, in benchmark_lmstudio
+    resp = requests.post(url, json=payload, timeout=timeout_s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/requests/api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rog/Documents/ai_code/pytorch/env_torch/lib/python3.11/site-packages/requests/adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=1234): Max retries exceeded with url: /api/v0/chat/completions (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7efc65f05590>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2026-06-13 23:26:37,397 | INFO | local_gpu_sla_profiler | NVML shutdown completed
+2026-06-13 23:31:33,279 | INFO | local_gpu_sla_profiler | Local GPU SLA Profiler started
+2026-06-13 23:31:33,279 | INFO | local_gpu_sla_profiler | Arguments: {'backend': 'lmstudio', 'model': 'qwen3-coder-30b-a3b-instruct', 'llm_url': 'http://localhost:1234/api/v0/chat/completions', 'prompt': 'You are benchmarking a local RAG system. Briefly explain how to reduce latency when YOLO vision inference, vector retrieval, and local LLM generation run on one RTX 3090.', 'max_tokens': 256, 'temperature': 0.2, 'timeout_s': 300, 'chunks': 31000, 'dim': 768, 'top_k': 100, 'query_runs': 50, 'warmup_runs': 5, 'seed': 42, 'numpy_batch_size': 8192, 'force_numpy': False, 'device_index': 0, 'vram_sample_interval_s': 0.05, 'strict_gpu_monitor': False, 'retrieval_sla_ms': 150.0, 'llm_sla_tps': 15.0, 'vram_sla_gib': 24.0, 'json_out': 'sla_report_lmstudio_v2.json', 'log_level': 'INFO', 'log_file': 'profiler_v2.log'}
+2026-06-13 23:31:33,290 | INFO | local_gpu_sla_profiler | NVML initialized successfully for device index 0
+2026-06-13 23:31:33,332 | INFO | local_gpu_sla_profiler | PyTorch CUDA peak memory stats reset
+2026-06-13 23:31:33,334 | INFO | local_gpu_sla_profiler | Starting vector benchmark: chunks=31000 dim=768 top_k=100 runs=50 warmup=5
+2026-06-13 23:31:33,559 | INFO | local_gpu_sla_profiler | Using FAISS IndexFlatIP backend
+2026-06-13 23:31:33,784 | INFO | local_gpu_sla_profiler | Vector benchmark completed: mean=4.02ms p95=4.41ms
+2026-06-13 23:31:33,786 | INFO | local_gpu_sla_profiler | VRAM sampler started with interval 0.050s
+2026-06-13 23:31:33,786 | INFO | local_gpu_sla_profiler | Starting LM Studio benchmark: model=qwen3-coder-30b-a3b-instruct url=http://localhost:1234/api/v0/chat/completions
+2026-06-13 23:31:36,459 | INFO | local_gpu_sla_profiler | LM Studio benchmark completed: ttft=0.422 tps=100.34366549398678
+2026-06-13 23:31:36,469 | INFO | local_gpu_sla_profiler | VRAM sampler stopped cleanly
+2026-06-13 23:31:36,469 | INFO | local_gpu_sla_profiler | VRAM sampler collected 53 samples
+2026-06-13 23:31:36,470 | INFO | local_gpu_sla_profiler | JSON report written to sla_report_lmstudio_v2.json
+2026-06-13 23:31:36,470 | INFO | local_gpu_sla_profiler | Local GPU SLA Profiler finished successfully
+2026-06-13 23:31:36,470 | INFO | local_gpu_sla_profiler | NVML shutdown completed
