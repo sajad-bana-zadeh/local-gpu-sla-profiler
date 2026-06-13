@@ -17,8 +17,8 @@
   "vram_snapshots": [
     {
       "label": "before_benchmark",
-      "timestamp_s": 1781380971.4437213,
-      "nvml_used_gib": 18.44677734375,
+      "timestamp_s": 1781382912.1574802,
+      "nvml_used_gib": 18.421630859375,
       "nvml_total_gib": 24.0,
       "torch_allocated_gib": 0.0,
       "torch_reserved_gib": 0.0,
@@ -27,8 +27,8 @@
     },
     {
       "label": "after_vector_search",
-      "timestamp_s": 1781380971.7376072,
-      "nvml_used_gib": 18.44677734375,
+      "timestamp_s": 1781382912.556088,
+      "nvml_used_gib": 18.421630859375,
       "nvml_total_gib": 24.0,
       "torch_allocated_gib": 0.0,
       "torch_reserved_gib": 0.0,
@@ -37,8 +37,8 @@
     },
     {
       "label": "after_llm_inference",
-      "timestamp_s": 1781380973.1567276,
-      "nvml_used_gib": 18.44677734375,
+      "timestamp_s": 1781382913.9247622,
+      "nvml_used_gib": 18.421630859375,
       "nvml_total_gib": 24.0,
       "torch_allocated_gib": 0.0,
       "torch_reserved_gib": 0.0,
@@ -46,7 +46,7 @@
       "torch_peak_reserved_gib": 0.0
     }
   ],
-  "peak_vram_gib": 18.44677734375,
+  "peak_vram_gib": 18.421630859375,
   "vector_search": {
     "backend": "numpy.batched_bruteforce_fallback",
     "chunks": 31000,
@@ -55,13 +55,13 @@
     "runs": 20,
     "warmup_runs": 3,
     "numpy_batch_size": 8192,
-    "build_time_ms": 0.0006849995770608075,
-    "mean_ms": 3.2522485500521725,
-    "p50_ms": 3.044659500119451,
-    "p95_ms": 4.041744200321775,
-    "min_ms": 2.860662999410124,
-    "max_ms": 5.593820000285632,
-    "std_ms": 0.6049314887844514
+    "build_time_ms": 0.00072900002123788,
+    "mean_ms": 2.9648543502844404,
+    "p50_ms": 2.8834415006713243,
+    "p95_ms": 3.0575816501368545,
+    "min_ms": 2.850695000233827,
+    "max_ms": 4.1451159995631315,
+    "std_ms": 0.2746928712885238
   },
   "llm_inference": {
     "backend": "lmstudio",
@@ -69,13 +69,13 @@
     "url": "http://localhost:1234/api/v0/chat/completions",
     "prompt_chars": 170,
     "max_tokens": 128,
-    "ttft_ms": 50.0,
-    "total_time_ms": 1410.3710039998987,
-    "generation_time_ms": 1309.0,
+    "ttft_ms": 58.0,
+    "total_time_ms": 1360.2782670004672,
+    "generation_time_ms": 1261.0,
     "output_tokens": 128,
-    "tokens_per_second": 97.02062643239114,
+    "tokens_per_second": 100.71371927042031,
     "metric_source": "lmstudio_native_stats",
-    "response_preview": "To reduce latency on a single RTX 3090 running YOLO vision inference, vector retrieval, and local LLM generation:\\n\\n1. **Model Optimization**: \\n   - Use YOLOv8n or smaller variants for faster inference\\n   - Quantize LLM to INT4/INT8 precision\\n   - Optimize vector database with FAISS IVF indexing\\n\\n2. **Hardware Utilization**:\\n   - Enable mixed precision (FP16) training/inference\\n   - Use TensorRT for YOLO optimization\\n   - Implement batch processing where possible\\n\\n3. **System Architecture**:\\n"
+    "response_preview": "To reduce latency on a single RTX 3090 running YOLO vision inference, vector retrieval, and local LLM generation:\\n\\n1. **Model Optimization**: \\n   - Use INT8 quantization for all models\\n   - Apply model pruning and distillation\\n   - Optimize YOLO with TensorRT for faster inference\\n\\n2. **Memory Management**:\\n   - Enable mixed precision (FP16) training/inference\\n   - Implement efficient memory pooling\\n   - Use CUDA streams to overlap operations\\n\\n3. **Pipeline Parallelism**:\\n   - Process vision → ve"
   },
   "sla": {
     "retrieval_latency_target_ms": 150.0,

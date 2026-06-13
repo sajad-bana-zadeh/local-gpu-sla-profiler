@@ -168,3 +168,18 @@ requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=1
 2026-06-13 23:31:36,470 | INFO | local_gpu_sla_profiler | JSON report written to sla_report_lmstudio_v2.json
 2026-06-13 23:31:36,470 | INFO | local_gpu_sla_profiler | Local GPU SLA Profiler finished successfully
 2026-06-13 23:31:36,470 | INFO | local_gpu_sla_profiler | NVML shutdown completed
+2026-06-14 00:04:50,480 | INFO | local_gpu_sla_profiler | Local GPU SLA Profiler started
+2026-06-14 00:04:50,480 | INFO | local_gpu_sla_profiler | Arguments: {'backend': 'lmstudio', 'model': 'qwen3-coder-30b-a3b-instruct', 'llm_url': 'http://localhost:1234/api/v0/chat/completions', 'prompt': 'You are benchmarking a local RAG system. Briefly explain how to reduce latency when YOLO vision inference, vector retrieval, and local LLM generation run on one RTX 3090.', 'max_tokens': 256, 'temperature': 0.2, 'timeout_s': 300, 'chunks': 31000, 'dim': 768, 'top_k': 100, 'query_runs': 50, 'warmup_runs': 5, 'seed': 42, 'numpy_batch_size': 8192, 'force_numpy': False, 'device_index': 0, 'vram_sample_interval_s': 0.05, 'strict_gpu_monitor': False, 'retrieval_sla_ms': 150.0, 'llm_sla_tps': 15.0, 'vram_sla_gib': 24.0, 'json_out': 'examples/v2/faiss-31k/sla_report_lmstudio_v2.json', 'log_level': 'INFO', 'log_file': 'examples/v2/faiss-31k/profiler_v2.log'}
+2026-06-14 00:04:50,491 | INFO | local_gpu_sla_profiler | NVML initialized successfully for device index 0
+2026-06-14 00:04:50,533 | INFO | local_gpu_sla_profiler | PyTorch CUDA peak memory stats reset
+2026-06-14 00:04:50,534 | INFO | local_gpu_sla_profiler | Starting vector benchmark: chunks=31000 dim=768 top_k=100 runs=50 warmup=5
+2026-06-14 00:04:50,755 | INFO | local_gpu_sla_profiler | Using FAISS IndexFlatIP backend
+2026-06-14 00:04:50,973 | INFO | local_gpu_sla_profiler | Vector benchmark completed: mean=3.92ms p95=4.05ms
+2026-06-14 00:04:50,974 | INFO | local_gpu_sla_profiler | VRAM sampler started with interval 0.050s
+2026-06-14 00:04:50,975 | INFO | local_gpu_sla_profiler | Starting LM Studio benchmark: model=qwen3-coder-30b-a3b-instruct url=http://localhost:1234/api/v0/chat/completions
+2026-06-14 00:04:53,435 | INFO | local_gpu_sla_profiler | LM Studio benchmark completed: ttft=0.034 tps=99.1983533073351
+2026-06-14 00:04:53,453 | INFO | local_gpu_sla_profiler | VRAM sampler stopped cleanly
+2026-06-14 00:04:53,453 | INFO | local_gpu_sla_profiler | VRAM sampler collected 49 samples
+2026-06-14 00:04:53,454 | INFO | local_gpu_sla_profiler | JSON report written to examples/v2/faiss-31k/sla_report_lmstudio_v2.json
+2026-06-14 00:04:53,454 | INFO | local_gpu_sla_profiler | Local GPU SLA Profiler finished successfully
+2026-06-14 00:04:53,454 | INFO | local_gpu_sla_profiler | NVML shutdown completed

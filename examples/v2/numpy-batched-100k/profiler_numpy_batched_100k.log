@@ -13,3 +13,18 @@
 2026-06-13 23:33:06,280 | INFO | local_gpu_sla_profiler | JSON report written to sla_report_numpy_batched_100k.json
 2026-06-13 23:33:06,280 | INFO | local_gpu_sla_profiler | Local GPU SLA Profiler finished successfully
 2026-06-13 23:33:06,280 | INFO | local_gpu_sla_profiler | NVML shutdown completed
+2026-06-14 00:05:19,347 | INFO | local_gpu_sla_profiler | Local GPU SLA Profiler started
+2026-06-14 00:05:19,347 | INFO | local_gpu_sla_profiler | Arguments: {'backend': 'lmstudio', 'model': 'qwen3-coder-30b-a3b-instruct', 'llm_url': 'http://localhost:1234/api/v0/chat/completions', 'prompt': 'You are benchmarking a local RAG system. Briefly explain how to reduce latency when YOLO vision inference, vector retrieval, and local LLM generation run on one RTX 3090.', 'max_tokens': 128, 'temperature': 0.2, 'timeout_s': 300, 'chunks': 100000, 'dim': 768, 'top_k': 100, 'query_runs': 20, 'warmup_runs': 3, 'seed': 42, 'numpy_batch_size': 8192, 'force_numpy': True, 'device_index': 0, 'vram_sample_interval_s': 0.05, 'strict_gpu_monitor': False, 'retrieval_sla_ms': 150.0, 'llm_sla_tps': 15.0, 'vram_sla_gib': 24.0, 'json_out': 'examples/v2/numpy-batched-100k/sla_report_numpy_batched_100k.json', 'log_level': 'INFO', 'log_file': 'examples/v2/numpy-batched-100k/profiler_numpy_batched_100k.log'}
+2026-06-14 00:05:19,357 | INFO | local_gpu_sla_profiler | NVML initialized successfully for device index 0
+2026-06-14 00:05:19,394 | INFO | local_gpu_sla_profiler | PyTorch CUDA peak memory stats reset
+2026-06-14 00:05:19,395 | INFO | local_gpu_sla_profiler | Starting vector benchmark: chunks=100000 dim=768 top_k=100 runs=20 warmup=3
+2026-06-14 00:05:20,044 | WARNING | local_gpu_sla_profiler | FAISS disabled by --force-numpy. Using batched NumPy fallback.
+2026-06-14 00:05:20,432 | INFO | local_gpu_sla_profiler | Vector benchmark completed: mean=13.72ms p95=27.54ms
+2026-06-14 00:05:20,434 | INFO | local_gpu_sla_profiler | VRAM sampler started with interval 0.050s
+2026-06-14 00:05:20,434 | INFO | local_gpu_sla_profiler | Starting LM Studio benchmark: model=qwen3-coder-30b-a3b-instruct url=http://localhost:1234/api/v0/chat/completions
+2026-06-14 00:05:21,814 | INFO | local_gpu_sla_profiler | LM Studio benchmark completed: ttft=0.066 tps=98.3733539891557
+2026-06-14 00:05:21,853 | INFO | local_gpu_sla_profiler | VRAM sampler stopped cleanly
+2026-06-14 00:05:21,853 | INFO | local_gpu_sla_profiler | VRAM sampler collected 28 samples
+2026-06-14 00:05:21,855 | INFO | local_gpu_sla_profiler | JSON report written to examples/v2/numpy-batched-100k/sla_report_numpy_batched_100k.json
+2026-06-14 00:05:21,855 | INFO | local_gpu_sla_profiler | Local GPU SLA Profiler finished successfully
+2026-06-14 00:05:21,855 | INFO | local_gpu_sla_profiler | NVML shutdown completed

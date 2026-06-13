@@ -1,18 +1,18 @@
-2026-06-13 23:32:51,397 | INFO | local_gpu_sla_profiler | Local GPU SLA Profiler started
-2026-06-13 23:32:51,397 | INFO | local_gpu_sla_profiler | Arguments: {'backend': 'lmstudio', 'model': 'qwen3-coder-30b-a3b-instruct', 'llm_url': 'http://localhost:1234/api/v0/chat/completions', 'prompt': 'You are benchmarking a local RAG system. Briefly explain how to reduce latency when YOLO vision inference, vector retrieval, and local LLM generation run on one RTX 3090.', 'max_tokens': 128, 'temperature': 0.2, 'timeout_s': 300, 'chunks': 31000, 'dim': 768, 'top_k': 100, 'query_runs': 20, 'warmup_runs': 3, 'seed': 42, 'numpy_batch_size': 8192, 'force_numpy': True, 'device_index': 0, 'vram_sample_interval_s': 0.05, 'strict_gpu_monitor': False, 'retrieval_sla_ms': 150.0, 'llm_sla_tps': 15.0, 'vram_sla_gib': 24.0, 'json_out': 'sla_report_numpy_batched.json', 'log_level': 'INFO', 'log_file': 'profiler_numpy_batched.log'}
-2026-06-13 23:32:51,408 | INFO | local_gpu_sla_profiler | NVML initialized successfully for device index 0
-2026-06-13 23:32:51,443 | INFO | local_gpu_sla_profiler | PyTorch CUDA peak memory stats reset
-2026-06-13 23:32:51,444 | INFO | local_gpu_sla_profiler | Starting vector benchmark: chunks=31000 dim=768 top_k=100 runs=20 warmup=3
-2026-06-13 23:32:51,658 | WARNING | local_gpu_sla_profiler | FAISS disabled by --force-numpy. Using batched NumPy fallback.
-2026-06-13 23:32:51,736 | INFO | local_gpu_sla_profiler | Vector benchmark completed: mean=3.25ms p95=4.04ms
-2026-06-13 23:32:51,737 | INFO | local_gpu_sla_profiler | VRAM sampler started with interval 0.050s
-2026-06-13 23:32:51,738 | INFO | local_gpu_sla_profiler | Starting LM Studio benchmark: model=qwen3-coder-30b-a3b-instruct url=http://localhost:1234/api/v0/chat/completions
-2026-06-13 23:32:53,148 | INFO | local_gpu_sla_profiler | LM Studio benchmark completed: ttft=0.05 tps=97.02062643239114
-2026-06-13 23:32:53,156 | INFO | local_gpu_sla_profiler | VRAM sampler stopped cleanly
-2026-06-13 23:32:53,156 | INFO | local_gpu_sla_profiler | VRAM sampler collected 28 samples
-2026-06-13 23:32:53,157 | INFO | local_gpu_sla_profiler | JSON report written to sla_report_numpy_batched.json
-2026-06-13 23:32:53,157 | INFO | local_gpu_sla_profiler | Local GPU SLA Profiler finished successfully
-2026-06-13 23:32:53,157 | INFO | local_gpu_sla_profiler | NVML shutdown completed
+2026-06-14 00:05:12,113 | INFO | local_gpu_sla_profiler | Local GPU SLA Profiler started
+2026-06-14 00:05:12,113 | INFO | local_gpu_sla_profiler | Arguments: {'backend': 'lmstudio', 'model': 'qwen3-coder-30b-a3b-instruct', 'llm_url': 'http://localhost:1234/api/v0/chat/completions', 'prompt': 'You are benchmarking a local RAG system. Briefly explain how to reduce latency when YOLO vision inference, vector retrieval, and local LLM generation run on one RTX 3090.', 'max_tokens': 128, 'temperature': 0.2, 'timeout_s': 300, 'chunks': 31000, 'dim': 768, 'top_k': 100, 'query_runs': 20, 'warmup_runs': 3, 'seed': 42, 'numpy_batch_size': 8192, 'force_numpy': True, 'device_index': 0, 'vram_sample_interval_s': 0.05, 'strict_gpu_monitor': False, 'retrieval_sla_ms': 150.0, 'llm_sla_tps': 15.0, 'vram_sla_gib': 24.0, 'json_out': 'examples/v2/numpy-batched-31k/sla_report_numpy_batched.json', 'log_level': 'INFO', 'log_file': 'examples/v2/numpy-batched-31k/profiler_numpy_batched.log'}
+2026-06-14 00:05:12,123 | INFO | local_gpu_sla_profiler | NVML initialized successfully for device index 0
+2026-06-14 00:05:12,156 | INFO | local_gpu_sla_profiler | PyTorch CUDA peak memory stats reset
+2026-06-14 00:05:12,158 | INFO | local_gpu_sla_profiler | Starting vector benchmark: chunks=31000 dim=768 top_k=100 runs=20 warmup=3
+2026-06-14 00:05:12,362 | WARNING | local_gpu_sla_profiler | FAISS disabled by --force-numpy. Using batched NumPy fallback.
+2026-06-14 00:05:12,555 | INFO | local_gpu_sla_profiler | Vector benchmark completed: mean=2.96ms p95=3.06ms
+2026-06-14 00:05:12,556 | INFO | local_gpu_sla_profiler | VRAM sampler started with interval 0.050s
+2026-06-14 00:05:12,556 | INFO | local_gpu_sla_profiler | Starting LM Studio benchmark: model=qwen3-coder-30b-a3b-instruct url=http://localhost:1234/api/v0/chat/completions
+2026-06-14 00:05:13,916 | INFO | local_gpu_sla_profiler | LM Studio benchmark completed: ttft=0.058 tps=100.71371927042031
+2026-06-14 00:05:13,924 | INFO | local_gpu_sla_profiler | VRAM sampler stopped cleanly
+2026-06-14 00:05:13,924 | INFO | local_gpu_sla_profiler | VRAM sampler collected 27 samples
+2026-06-14 00:05:13,925 | INFO | local_gpu_sla_profiler | JSON report written to examples/v2/numpy-batched-31k/sla_report_numpy_batched.json
+2026-06-14 00:05:13,925 | INFO | local_gpu_sla_profiler | Local GPU SLA Profiler finished successfully
+2026-06-14 00:05:13,925 | INFO | local_gpu_sla_profiler | NVML shutdown completed
 
 ========================================================================
 LOCAL GPU SLA PROFILER REPORT
@@ -30,10 +30,10 @@ FAISS Available: True
 NVML Available/OK: True / True
 
 [VRAM Snapshots]
-before_benchmark             | NVML used:   18.447 GiB | Torch allocated:    0.000 GiB | Torch reserved:    0.000 GiB
-after_vector_search          | NVML used:   18.447 GiB | Torch allocated:    0.000 GiB | Torch reserved:    0.000 GiB
-after_llm_inference          | NVML used:   18.447 GiB | Torch allocated:    0.000 GiB | Torch reserved:    0.000 GiB
-Peak Device VRAM During LLM: 18.447 GiB
+before_benchmark             | NVML used:   18.422 GiB | Torch allocated:    0.000 GiB | Torch reserved:    0.000 GiB
+after_vector_search          | NVML used:   18.422 GiB | Torch allocated:    0.000 GiB | Torch reserved:    0.000 GiB
+after_llm_inference          | NVML used:   18.422 GiB | Torch allocated:    0.000 GiB | Torch reserved:    0.000 GiB
+Peak Device VRAM During LLM: 18.422 GiB
 
 [Vector Search]
 Backend: numpy.batched_bruteforce_fallback
@@ -43,11 +43,11 @@ Top-K: 100
 Runs/Warmup: 20/3
 NumPy Batch Size: 8192
 Index Build Time: 0.00 ms
-Mean Latency: 3.25 ms
-P50 Latency: 3.04 ms
-P95 Latency: 4.04 ms
-Min/Max Latency: 2.86 / 5.59 ms
-Std Latency: 0.60 ms
+Mean Latency: 2.96 ms
+P50 Latency: 2.88 ms
+P95 Latency: 3.06 ms
+Min/Max Latency: 2.85 / 4.15 ms
+Std Latency: 0.27 ms
 
 [LLM Inference]
 Backend: lmstudio
@@ -55,13 +55,13 @@ Model: qwen3-coder-30b-a3b-instruct
 URL: http://localhost:1234/api/v0/chat/completions
 Prompt Chars: 170
 Max Tokens: 128
-TTFT: 50.00 ms
-Total Time: 1410.37 ms
-Generation Time: 1309.00 ms
+TTFT: 58.00 ms
+Total Time: 1360.28 ms
+Generation Time: 1261.00 ms
 Output Tokens: 128
-Tokens/sec: 97.02
+Tokens/sec: 100.71
 Metric Source: lmstudio_native_stats
-Response Preview: To reduce latency on a single RTX 3090 running YOLO vision inference, vector retrieval, and local LLM generation:\n\n1. **Model Optimization**: \n   - Use YOLOv8n or smaller variants for faster inference\n   - Quantize LLM to INT4/INT8 precision\n   - Optimize vector database with FAISS IVF indexing\n\n2. **Hardware Utilization**:\n   - Enable mixed precision (FP16) training/inference\n   - Use TensorRT for YOLO optimization\n   - Implement batch processing where possible\n\n3. **System Architecture**:\n
+Response Preview: To reduce latency on a single RTX 3090 running YOLO vision inference, vector retrieval, and local LLM generation:\n\n1. **Model Optimization**: \n   - Use INT8 quantization for all models\n   - Apply model pruning and distillation\n   - Optimize YOLO with TensorRT for faster inference\n\n2. **Memory Management**:\n   - Enable mixed precision (FP16) training/inference\n   - Implement efficient memory pooling\n   - Use CUDA streams to overlap operations\n\n3. **Pipeline Parallelism**:\n   - Process vision → ve
 
 [SLA Verdict]
 Retrieval P95 <= 150.0 ms: PASS
@@ -80,4 +80,4 @@ Overall: PASS
 - Use --strict-gpu-monitor for fail-fast behavior on NVML/CUDA monitoring errors.
 ========================================================================
 
-JSON report written to: sla_report_numpy_batched.json
+JSON report written to: examples/v2/numpy-batched-31k/sla_report_numpy_batched.json
